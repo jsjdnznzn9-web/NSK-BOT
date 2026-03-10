@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Guild Bot Status</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+--green:#22c55e;
+}
+
+body{
+margin:0;
+background:linear-gradient(180deg,#020617,#000814);
+font-family:Arial,Helvetica,sans-serif;
+color:white;
+display:flex;
+flex-direction:column;
+align-items:center;
+min-height:100vh;
+padding:20px;
+}
+
+/* WRAPPER */
+.wrapper{
+width:100%;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:25px;
+flex:1;
+}
+
+/* ================= BOT STATUS ================= */
+
+.card{
+width:100%;
+max-width:420px;
+background:#020617;
+border-radius:18px;
+padding:18px;
+border:1px solid #22d3ee33;
+box-shadow:0 0 25px #22d3ee22;
+}
+
+.uid{
+font-size:28px;
+font-weight:bold;
+letter-spacing:2px;
+}
+
+.status{
+float:right;
+background:#16a34a22;
+color:#22c55e;
+padding:5px 12px;
+border-radius:20px;
+font-size:12px;
+}
+
+.profile{
+display:flex;
+align-items:center;
+margin-top:15px;
+gap:15px;
+}
+
+.profile img{
+width:70px;
+height:70px;
+border-radius:12px;
+border:2px solid #facc15;
+object-fit:cover;
+}
+
+.level{
+color:#facc15;
+font-weight:bold;
+}
+
+.info{
+margin-top:10px;
+background:#000814;
+padding:10px;
+border-radius:10px;
+font-size:13px;
+color:#94a3b8;
+}
+
+.stats{
+display:flex;
+gap:10px;
+margin-top:15px;
+}
+
+.box{
+flex:1;
+background:#000814;
+padding:15px;
+border-radius:12px;
+text-align:center;
+border:1px solid #22d3ee22;
+}
+
+.box h3{
+margin:5px 0;
+font-size:22px;
+color:#22d3ee;
+}
+
+/* ================= SUCCESS CARD ================= */
+
+.success-card{
+background:rgba(15,23,42,0.6);
+border:1px solid var(--green);
+padding:40px;
+border-radius:30px;
+backdrop-filter:blur(20px);
+box-shadow:0 0 40px rgba(34,197,94,0.1);
+max-width:420px;
+width:100%;
+text-align:center;
+font-family:'Outfit',sans-serif;
+}
+
+.check-icon{
+width:80px;
+height:80px;
+background:var(--green);
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+margin:0 auto 25px;
+box-shadow:0 0 30px var(--green);
+animation:pulse 2s infinite;
+}
+
+.success-card h1{
+font-family:'Orbitron';
+color:var(--green);
+font-size:24px;
+}
+
+.success-card p{
+color:#94a3b8;
+font-size:15px;
+}
+
+.btn-back{
+margin-top:25px;
+padding:12px 30px;
+background:white;
+color:black;
+border-radius:12px;
+font-weight:bold;
+cursor:pointer;
+border:none;
+transition:.3s;
+}
+
+.btn-back:hover{
+transform:scale(1.05);
+}
+
+/* ===== EXTRA SECTION ===== */
+
+.extra-info{
+margin-top:25px;
+text-align:center;
+}
+
+.taglines p{
+margin:6px 0;
+font-size:13px;
+color:#94a3b8;
+}
+
+.live-box{
+margin-top:18px;
+background:rgba(34,197,94,0.08);
+border:1px solid #22c55e33;
+padding:15px;
+border-radius:12px;
+font-size:12px;
+color:#22c55e;
+}
+
+.live-box h2{
+margin:6px 0 0;
+font-size:26px;
+color:white;
+font-family:'Orbitron';
+}
+
+.rating-box{
+margin-top:18px;
+font-size:12px;
+color:#94a3b8;
+}
+
+.stars{
+color:#facc15;
+font-size:20px;
+letter-spacing:3px;
+margin:5px 0;
+}
+
+/* FOOTER */
+.page-footer{
+text-align:center;
+font-size:12px;
+color:#94a3b8;
+margin-top:30px;
+padding-bottom:10px;
+}
+
+@keyframes pulse{
+0%{box-shadow:0 0 0 0 rgba(34,197,94,.7);}
+70%{box-shadow:0 0 0 20px rgba(34,197,94,0);}
+100%{box-shadow:0 0 0 0 rgba(34,197,94,0);}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<!-- BOT STATUS -->
+<div class="card">
+
+<div class="uid">
+<span id="uidText">000000000</span>
+<span class="status">RUNNING</span>
+</div>
+
+<div style="margin-top:5px;color:#94a3b8;font-size:13px;">
+ID: <span id="uidSmall"></span> |
+<span id="country"></span> |
+<span id="bots"></span> BOTS
+</div>
+
+<div class="profile">
+<img id="guildImg">
+<div>
+<div class="level">LV.<span id="level"></span> ARCANE-X</div>
+<div style="font-size:13px;color:#94a3b8;">
+Members: <span id="members"></span>/40<br>
+Captain: <span id="captain"></span>
+</div>
+</div>
+</div>
+
+<div class="info">
+Clan: <span id="clan"></span> |
+Region: <span id="region"></span>
+</div>
+
+<div class="stats">
+<div class="box">
+UPTIME
+<h3 id="uptime">0h 0m</h3>
+</div>
+
+<div class="box">
+TOTAL GLORY
+<h3 id="glory">0</h3>
+</div>
+</div>
+
+</div>
+
+<!-- SUCCESS SCREEN -->
+<div class="success-card">
+
+<div class="check-icon">
+<svg width="40" height="40" viewBox="0 0 24 24"
+fill="none" stroke="black" stroke-width="4">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+
+<h1>PROCESS COMPLETE</h1>
+
+<p>
+Your Request has been successfully injected into the server.
+Changes will be visible within 2-3 hours.
+</p>
+
+<div style="background:rgba(255,255,255,0.05);
+padding:15px;border-radius:10px;margin:20px 0;
+font-size:12px;color:var(--green);">
+STATUS: ENQUEUED FOR DISTRIBUTION
+</div>
+
+<button class="btn-back" onclick="goHome()">
+BACK TO COMMAND CENTER
+</button>
+
+<!-- EXTRA INFO -->
+<div class="extra-info">
+
+<div class="taglines">
+<p>⚡ Real-Time Guild Automation Active</p>
+<p>🚀 AI Distribution Network Online</p>
+<p>🛡 Secure Server Injection Completed</p>
+</div>
+
+<div class="live-box">
+LIVE PLAYERS ONLINE
+<h2 id="livePlayers">1,284</h2>
+</div>
+
+<div class="rating-box">
+COMMUNITY RATING
+<div class="stars">★★★★★</div>
+<span>4.9 / 5 from 12,000+ users</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="page-footer">
+⚡ Guild Glory Bot System<br>
+Auto AI Guild Processing
+</div>
+<script>
+
+/* ================= BACK BUTTON ================= */
+function goHome(){
+window.location.href="index.html";
+}
+
+/* ================= LOAD DATA FROM DASHBOARD ================= */
+
+/* ✅ GET DATA */
+const uid = localStorage.getItem("gg_uid") || "208595387";
+const server = localStorage.getItem("gg_server") || "GLOBAL";
+
+/* SHOW UID */
+document.getElementById("uidText").innerText = uid;
+document.getElementById("uidSmall").innerText = uid;
+
+/* SERVER = COUNTRY DISPLAY */
+document.getElementById("country").innerText = server;
+
+/* RANDOM BOT DATA (AUTO GENERATE LOOK) */
+document.getElementById("bots").innerText =
+Math.floor(Math.random()*3)+2;
+
+document.getElementById("level").innerText =
+Math.floor(Math.random()*5)+1;
+
+document.getElementById("members").innerText =
+Math.floor(Math.random()*35)+5;
+
+document.getElementById("captain").innerText =
+Math.floor(100000000+Math.random()*900000000);
+
+document.getElementById("clan").innerText =
+Math.floor(1000000000+Math.random()*9000000000);
+
+document.getElementById("region").innerText = server;
+
+/* RANDOM GUILD IMAGE */
+document.getElementById("guildImg").src = [
+"https://i.ibb.co/kV4pH6Vw/image.png",
+"https://i.ibb.co/6Rfz7TJS/image.png",
+"https://i.ibb.co/hRvN2bT3/image.png"
+][Math.floor(Math.random()*3)];
+
+/* ================= UPTIME ================= */
+let minutes=0;
+setInterval(()=>{
+minutes++;
+document.getElementById("uptime").innerText =
+`${Math.floor(minutes/60)}h ${minutes%60}m`;
+},60000);
+
+/* ================= GLORY COUNTER ================= */
+let glory=0;
+setInterval(()=>{
+glory+=Math.floor(Math.random()*30);
+document.getElementById("glory").innerText=glory;
+},2000);
+
+/* ================= LIVE PLAYERS ================= */
+let players=1284;
+setInterval(()=>{
+players+=Math.floor(Math.random()*5);
+document.getElementById("livePlayers").innerText =
+players.toLocaleString();
+},3000);
+
+</script>
+
+</body>
+</html>

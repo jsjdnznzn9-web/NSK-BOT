@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSK BOT</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:radial-gradient(circle at top,#020617,#000814 70%);
+font-family:Arial,Helvetica,sans-serif;
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+/* animated background glow */
+body::before{
+content:"";
+position:fixed;
+width:600px;
+height:600px;
+background:radial-gradient(circle,#06b6d433,transparent);
+top:-150px;
+left:-150px;
+animation:moveGlow 8s infinite alternate;
+}
+
+@keyframes moveGlow{
+from{transform:translate(0,0);}
+to{transform:translate(120px,80px);}
+}
+
+.container{
+animation:fade .8s ease;
+z-index:2;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;}
+}
+
+/* 🔥 CIRCLE LOGO */
+.logo{
+width:130px;
+height:130px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid #22d3ee;
+box-shadow:0 0 25px #22d3ee88;
+margin-bottom:15px;
+}
+
+.title{
+font-size:30px;
+font-weight:900;
+letter-spacing:3px;
+background:linear-gradient(90deg,#06b6d4,#22d3ee);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+/* TAGLINES */
+.taglines{
+margin-top:10px;
+font-size:13px;
+color:#94a3b8;
+line-height:22px;
+}
+
+/* LIVE PLAYERS */
+.livePlayers{
+margin-top:15px;
+color:#22d3ee;
+font-size:14px;
+}
+
+/* INPUT */
+input{
+margin-top:20px;
+padding:14px;
+width:240px;
+border-radius:10px;
+border:1px solid #22d3ee55;
+background:#020617;
+color:white;
+outline:none;
+}
+
+/* BUTTON */
+button{
+margin-top:18px;
+padding:14px 45px;
+border:none;
+border-radius:10px;
+background:linear-gradient(90deg,#06b6d4,#22d3ee);
+color:white;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 0 15px #22d3ee55;
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+#msg{
+margin-top:10px;
+font-size:14px;
+}
+
+footer{
+position:fixed;
+bottom:0;
+width:100%;
+background:#000814;
+padding:18px;
+font-size:12px;
+color:#94a3b8;
+border-top:1px solid #22d3ee22;
+}
+
+.footer-brand{
+color:#22d3ee;
+font-weight:bold;
+margin-bottom:5px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- CIRCLE LOGO -->
+<img class="logo"
+src="https://i.ibb.co/5g1xfT0L/image.jpg"
+onerror="this.src='https://placehold.co/130x130?text=NSK+BOT'">
+
+<div class="title">NSK BOT</div>
+
+<!-- TAGLINES -->
+<div class="taglines">
+⚡ Instant Glory Upgrade<br>
+🎮 Secure Gaming System<br>
+🚀 Fast • Safe • Automated
+</div>
+
+<!-- LIVE PLAYERS -->
+<div class="livePlayers" id="players">
+👥 Live Players: 1287
+</div>
+
+<input type="password" id="password" placeholder="Enter Access Password">
+
+<br>
+
+<button onclick="startSite()">START GAME</button>
+
+<div id="msg"></div>
+
+</div>
+
+<footer>
+<div <!-- SOCIAL BUTTONS -->
+<div style="position:fixed;bottom:80px;width:100%;text-align:center;z-index:5;">
+
+<div style="
+color:#94a3b8;
+font-size:13px;
+margin-bottom:8px;
+letter-spacing:1px;">
+✨ Join Social Media Account For Latest Updates
+</div>
+
+<a href="https://t.me/+deBwlLOkyF4xZmE1" target="_blank"
+style="text-decoration:none;">
+<button style="
+margin:5px;
+padding:10px 22px;
+border:none;
+border-radius:8px;
+background:#229ED9;
+color:white;
+font-weight:bold;
+cursor:pointer;">
+📢 Join Telegram
+</button>
+</a>
+
+<a href="https://youtube.com/@atozgamingnsk?si=eCatfozBY3xxt2Eb" target="_blank"
+style="text-decoration:none;">
+<button style="
+margin:5px;
+padding:10px 22px;
+border:none;
+border-radius:8px;
+background:#FF0000;
+color:white;
+font-weight:bold;
+cursor:pointer;">
+▶ Subscribe YouTube
+</button>
+</a>
+
+</div>
+</footer>
+
+<script>
+
+const correctPassword="NSK@10K";
+const redirectLink="dashboard.html";
+
+/* PASSWORD CHECK */
+function startSite(){
+
+let pass=document.getElementById("password").value;
+
+if(pass===correctPassword){
+msg.style.color="#22d3ee";
+msg.innerText="Access Granted ✅";
+
+setTimeout(()=>{
+window.location.href=redirectLink;
+},800);
+
+}else{
+msg.style.color="red";
+msg.innerText="Wrong Password ❌";
+}
+
+}
+
+/* LIVE PLAYERS AUTO CHANGE */
+let players=1287;
+
+setInterval(()=>{
+players+=Math.random()>0.5?5:-3;
+players=Math.max(900,Math.min(2500,players));
+document.getElementById("players").innerText=
+"👥 Live Players: "+Math.floor(players);
+},2500);
+
+</script>
+
+</body>
+</html>
+
+
+

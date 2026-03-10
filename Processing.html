@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSK BOT | NEURAL TERMINAL</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root { --neon: #00f2ff; --bg: #020617; }
+        body { margin: 0; background: var(--bg); color: white; font-family: 'JetBrains Mono', monospace; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        
+        .terminal-container { width: 90%; max-width: 600px; background: rgba(0,0,0,0.8); border: 1px solid rgba(0,242,255,0.3); border-radius: 12px; padding: 25px; box-shadow: 0 0 50px rgba(0,242,255,0.1); }
+        
+        .header { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(0,242,255,0.2); padding-bottom: 10px; margin-bottom: 20px; font-family: 'Orbitron'; font-size: 14px; color: var(--neon); }
+        
+        #console { height: 250px; overflow-y: auto; font-size: 13px; color: #94a3b8; line-height: 1.6; }
+        #console b { color: var(--neon); }
+        
+        .progress-box { margin-top: 25px; }
+        .bar-bg { height: 4px; background: #1e293b; border-radius: 10px; overflow: hidden; }
+        .bar-fill { height: 100%; width: 0%; background: var(--neon); box-shadow: 0 0 15px var(--neon); transition: 0.3s; }
+        .percent { text-align: right; font-size: 12px; margin-top: 8px; color: var(--neon); }
+        
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: var(--neon); border-radius: 10px; }
+    </style>
+</head>
+<body>
+<!-- SOCIAL BUTTONS -->
+<div style="position:fixed;bottom:80px;width:100%;text-align:center;z-index:5;">
+
+<div style="
+color:#94a3b8;
+font-size:13px;
+margin-bottom:8px;
+letter-spacing:1px;">
+✨ Join Social Media Account For Latest Updates
+</div>
+
+<a href="https://t.me/+deBwlLOkyF4xZmE1" target="_blank"
+style="text-decoration:none;">
+<button style="
+margin:5px;
+padding:10px 22px;
+border:none;
+border-radius:8px;
+background:#229ED9;
+color:white;
+font-weight:bold;
+cursor:pointer;">
+📢 Join Telegram
+</button>
+</a>
+
+<a href="https://youtube.com/@atozgamingnsk?si=eCatfozBY3xxt2Eb" target="_blank"
+style="text-decoration:none;">
+<button style="
+margin:5px;
+padding:10px 22px;
+border:none;
+border-radius:8px;
+background:#FF0000;
+color:white;
+font-weight:bold;
+cursor:pointer;">
+▶ Subscribe YouTube
+</button>
+</a>
+
+</div>
+<div class="terminal-container">
+    <div class="header">
+        <span>● NSK_SYSTEM_v4.0</span>
+        <span id="clock">00:00:00</span>
+    </div>
+    
+    <div id="console">
+        <div>[SYSTEM] INITIALIZING CORE BYPASS...</div>
+    </div>
+
+    <div class="progress-box">
+        <div class="bar-bg"><div class="bar-fill" id="pBar"></div></div>
+        <div class="percent" id="pText">SYCHRONIZING: 0%</div>
+    </div>
+</div>
+
+<script>
+    const logs = [
+        "> Initializing secure handshake...",
+        "> Establishing <b>Encrypted Tunnel</b>...",
+        "> Searching for Target UID Node...",
+        "> Node Found: 0x77FF102",
+        "> Injecting <b>Glory_Data_Packets</b>...",
+        "> Bypassing Firewall Anti-Cheat...",
+        "> Patching Server Registry...",
+        "> Finalizing Verification..."
+    ];
+
+    let i = 0;
+    let progress = 0;
+    const consoleBox = document.getElementById('console');
+    const pBar = document.getElementById('pBar');
+    const pText = document.getElementById('pText');
+
+    function runTerminal() {
+        if (i < logs.length) {
+            const line = document.createElement('div');
+            line.innerHTML = logs[i];
+            consoleBox.appendChild(line);
+            consoleBox.scrollTop = consoleBox.scrollHeight;
+            
+            i++;
+            progress += (100 / logs.length);
+            pBar.style.width = progress + "%";
+            pText.innerText = `SYNCHRONIZING: ${Math.floor(progress)}%`;
+            
+            setTimeout(runTerminal, Math.random() * 1000 + 500);
+        } else {
+            setTimeout(() => { window.location.href = "success.html"; }, 1500);
+        }
+    }
+
+    // Live Clock
+    setInterval(() => {
+        document.getElementById('clock').innerText = new Date().toLocaleTimeString();
+    }, 1000);
+
+    window.onload = runTerminal;
+</script>
+</body>
+</html>
